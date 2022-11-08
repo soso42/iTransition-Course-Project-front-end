@@ -1,0 +1,139 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 w-50">
+
+      <br><br>
+      <a class="btn btn-link btn-rounded btn-sm" role="button" (click)="location.back()">Back</a>
+      <br><br>
+      <p class="display-6">Update item (id: {{item.itemId}})</p>
+      <br><br>
+
+      <form class="w-100">
+        <div class="form-outline mb-4">
+          <input type="text" id="name" class="form-control" [(ngModel)]="itemUpdateRequest.name" name="name" required />
+          <label class="form-label" for="name">Name</label>
+        </div>
+
+        <br><br>
+
+        <!-- Tags autocomplete -->
+        <app-tags class="w-100" [selectedTags]="tags" (tagsUpdatedEvent)="updateTags($event)"></app-tags>
+        <br>
+
+
+        <!-- Optional String 1 -->
+        <div class="form-outline mb-4" *ngIf="item.customString1 != null">
+          <input type="text" id="optionalString1" class="form-control" [(ngModel)]="itemUpdateRequest.customString1" name="customString1" />
+          <label class="form-label" for="optionalString1">{{item.customString1}}</label>
+        </div>
+
+        <!-- Optional String 2 -->
+        <div class="form-outline mb-4" *ngIf="item.customString2 != null">
+          <input type="text" id="optionalString2" class="form-control" [(ngModel)]="itemUpdateRequest.customString2" name="customString2" />
+          <label class="form-label" for="optionalString2">{{item.customString2}}</label>
+        </div>
+
+        <!-- Optional String 3 -->
+        <div class="form-outline mb-4" *ngIf="item.customString3 != null">
+          <input type="text" id="optionalString3" class="form-control" [(ngModel)]="itemUpdateRequest.customString3" name="customString3" />
+          <label class="form-label" for="optionalString3">{{item.customString3}}</label>
+        </div>
+
+
+        <!-- Optional Integer 1 -->
+        <div class="form-outline mb-4" *ngIf="item.customInteger1 != null">
+          <input type="number" id="customInteger1" class="form-control" [(ngModel)]="itemUpdateRequest.customInteger1" name="customInteger1" />
+          <label class="form-label" for="customInteger1">{{item.customInteger1}}</label>
+        </div>
+
+        <!-- Optional Integer 2 -->
+        <div class="form-outline mb-4" *ngIf="item.customInteger2 != null">
+          <input type="number" id="customInteger2" class="form-control" [(ngModel)]="itemUpdateRequest.customInteger2" name="customInteger2" />
+          <label class="form-label" for="customInteger2">{{item.customInteger2}}</label>
+        </div>
+
+        <!-- Optional Integer 3 -->
+        <div class="form-outline mb-4" *ngIf="item.customInteger3 != null">
+          <input type="number" id="customInteger3" class="form-control" [(ngModel)]="itemUpdateRequest.customInteger3" name="customInteger3" />
+          <label class="form-label" for="customInteger3">{{item.customInteger3}}</label>
+        </div>
+
+
+        <!-- Optional Boolean 1 -->
+        <div class="form-outline mb-4"  *ngIf="item.customBoolean1 != null">
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemUpdateRequest.customBoolean1" name="topic" >
+            <option value="true" selected>True</option>
+            <option value="false">False</option>
+          </select>
+          <label class="form-label">{{item.customBoolean1}}</label>
+        </div>
+
+        <!-- Optional Boolean 2 -->
+        <div class="form-outline mb-4"  *ngIf="item.customBoolean2 != null">
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemUpdateRequest.customBoolean2" name="topic" >
+            <option value="true" selected>True</option>
+            <option value="false">False</option>
+          </select>
+          <label class="form-label">{{item.customBoolean2}}</label>
+        </div>
+
+        <!-- Optional Boolean 3 -->
+        <div class="form-outline mb-4"  *ngIf="item.customBoolean3 != null">
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemUpdateRequest.customBoolean3" name="topic" >
+            <option value="true" selected>True</option>
+            <option value="false">False</option>
+          </select>
+          <label class="form-label">{{item.customBoolean3}}</label>
+        </div>
+
+
+        <!-- Optional MultilineText 1 -->
+        <div class="form-outline mb-4" *ngIf="item.customMultilineText1 != null">
+          <textarea type="text" rows="3" id="customMultilineText1" class="form-control" [(ngModel)]="itemUpdateRequest.customMultilineText1" name="customMultilineText1"></textarea>
+          <label class="form-label" for="customMultilineText1">{{item.customMultilineText1}}</label>
+        </div>
+
+        <!-- Optional MultilineText 2 -->
+        <div class="form-outline mb-4" *ngIf="item.customMultilineText2 != null">
+          <textarea type="text" rows="3" id="customMultilineText2" class="form-control" [(ngModel)]="itemUpdateRequest.customMultilineText2" name="customMultilineText2"></textarea>
+          <label class="form-label" for="customMultilineText2">{{item.customMultilineText2}}</label>
+        </div>
+
+        <!-- Optional MultilineText 3 -->
+        <div class="form-outline mb-4" *ngIf="item.customMultilineText3 != null">
+          <textarea type="text" rows="3" id="customMultilineText3" class="form-control" [(ngModel)]="itemUpdateRequest.customMultilineText3" name="customMultilineText3"></textarea>
+          <label class="form-label" for="customMultilineText3">{{item.customMultilineText3}}</label>
+        </div>
+
+
+        <!-- Optional Date 1 -->
+        <div class="form-outline mb-4" *ngIf="item.customDate1 != null">
+          <input type="date" id="customDate1" class="form-control" [(ngModel)]="itemUpdateRequest.customDate1" name="customDate1" />
+          <label class="form-label" for="customDate1">{{item.customDate1}}</label>
+        </div>
+
+        <!-- Optional Date 2 -->
+        <div class="form-outline mb-4" *ngIf="item.customDate2 != null">
+          <input type="date" id="customDate2" class="form-control" [(ngModel)]="itemUpdateRequest.customDate2" name="customDate2" />
+          <label class="form-label" for="customDate2">{{item.customDate2}}</label>
+        </div>
+
+        <!-- Optional Date 3 -->
+        <div class="form-outline mb-4" *ngIf="item.customDate3 != null">
+          <input type="date" id="customDate3" class="form-control" [(ngModel)]="itemUpdateRequest.customDate3" name="customDate3" />
+          <label class="form-label" for="customDate3">{{item.customDate3}}</label>
+        </div>
+
+
+        <!-- Submit buttons -->
+        <button (click)="updateItem()"
+                type="submit"
+                class="btn btn-primary btn-block mb-4" >Update item</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>

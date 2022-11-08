@@ -1,0 +1,134 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-auto w-100">
+
+      <br><br>
+      <a class="btn btn-link btn-rounded btn-sm" role="button" (click)="location.back()">Back</a>
+
+      <br><br><br>
+
+      <h1 class="display-4">Collection info:</h1>
+
+      <div class="row">
+        <div class="col-auto w-25">
+          <img [src]="collection.image" alt="" style="width: 300px; height: 300px" />
+        </div>
+        <div class="col-auto w-75">
+          <div class="bg-light p-2">
+            <p class="text-secondary">Id: {{collection.collectionId}}</p>
+            <p class="text-secondary">Name: {{collection.name}}</p>
+            <p class="text-secondary">Topic: {{collection.topic}}</p>
+
+            <p class="text-secondary" *ngIf="collection.customString1">CustomString1: {{collection.customString1}}</p>
+            <p class="text-secondary" *ngIf="collection.customString2">CustomString2: {{collection.customString2}}</p>
+            <p class="text-secondary" *ngIf="collection.customString3">CustomString3: {{collection.customString3}}</p>
+
+            <p class="text-secondary" *ngIf="collection.customBoolean1">CustomBoolean1: {{collection.customBoolean1}}</p>
+            <p class="text-secondary" *ngIf="collection.customBoolean2">CustomBoolean2: {{collection.customBoolean2}}</p>
+            <p class="text-secondary" *ngIf="collection.customBoolean3">CustomBoolean3: {{collection.customBoolean3}}</p>
+
+            <p class="text-secondary" *ngIf="collection.customInteger1">CustomInteger1: {{collection.customInteger1}}</p>
+            <p class="text-secondary" *ngIf="collection.customInteger2">CustomInteger2: {{collection.customInteger2}}</p>
+            <p class="text-secondary" *ngIf="collection.customInteger3">CustomInteger3: {{collection.customInteger3}}</p>
+
+            <p class="text-secondary" *ngIf="collection.customMultilineText1">CustomMultilineText1: {{collection.customMultilineText1}}</p>
+            <p class="text-secondary" *ngIf="collection.customMultilineText2">CustomMultilineText2: {{collection.customMultilineText2}}</p>
+            <p class="text-secondary" *ngIf="collection.customMultilineText3">CustomMultilineText3: {{collection.customMultilineText3}}</p>
+
+            <p class="text-secondary" *ngIf="collection.customDate1">CustomDate1: {{collection.customDate1}}</p>
+            <p class="text-secondary" *ngIf="collection.customDate2">CustomDate2: {{collection.customDate2}}</p>
+            <p class="text-secondary" *ngIf="collection.customDate3">CustomDate3: {{collection.customDate3}}</p>
+
+            <p class="text-secondary">Collection owner: {{collection.author.username}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-auto">
+          <br>
+          <h1 class="display-6">Description: </h1>
+          <br>
+          <showdown [value]="collection.description" [options]="{emoji: true}"></showdown>
+        </div>
+      </div>
+
+      <br><br>
+
+      <h1 class="display-6">Manage items: </h1>
+      <br><br>
+
+      <button type="button" class="btn btn-primary" (click)="onClickNewItem()" *ngIf="isEditable">Add new item</button>
+      <br><br><br>
+
+
+
+      <div class="search-container">
+        <mat-form-field appearance="fill">
+          <input matInput placeholder="Filter..." (keyup)="filter($event)">
+        </mat-form-field>
+      </div>
+
+      <table mat-table matSort [dataSource]="items" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell mat-sort-header="name" *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let item"> {{item.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customString1">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> {{collection.customString1}} </th>
+          <td mat-cell *matCellDef="let item"> {{item.customString1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customString2">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> {{collection.customString2}} </th>
+          <td mat-cell *matCellDef="let item"> {{item.customString2}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customString3">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> {{collection.customString3}} </th>
+          <td mat-cell *matCellDef="let item"> {{item.customString3}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customDate1">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> {{collection.customDate1}} </th>
+          <td mat-cell *matCellDef="let item"> {{item.customDate1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customDate2">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> {{collection.customDate2}} </th>
+          <td mat-cell *matCellDef="let item"> {{item.customDate2}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customDate3">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef> {{collection.customDate3}} </th>
+          <td mat-cell *matCellDef="let item"> {{item.customDate3}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let item">
+            <div>
+              <a href="javascript:void(0)" class="p-1" (click)="onClickViewItem(item)" >View</a>
+              <a href="javascript:void(0)" class="p-1" (click)="onClickEditItem(item)" *ngIf="isEditable">Edit</a>
+              <a href="javascript:void(0)" class="p-1" (click)="onClickRemoveItem(item)" *ngIf="isEditable">Remove</a>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+
+
+
+
+
+      <br><br><br><br><br>
+    </div>
+  </div>
+</div>

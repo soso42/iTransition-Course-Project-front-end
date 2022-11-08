@@ -1,0 +1,75 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-auto w-100">
+      <br><br><br>
+
+      <h1 class="display-4">Admin Panel</h1>
+      <br><br>
+
+      <h1 class="display-6">Manage users:</h1>
+      <br><br>
+      <div>
+
+        <button type="button" class="btn btn-danger" (click)="blockUsers()">Block</button>
+        <span> | </span>
+        <button type="button" class="btn btn-success" (click)="unblockUsers()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-unlock" viewBox="0 0 16 16">
+            <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
+          </svg>
+          Unblock
+        </button>
+        <span> | </span>
+        <button type="button" class="btn btn-danger" (click)="deleteUsers()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+          </svg>
+          Delete</button>
+        <span> | </span>
+        <button type="button" class="btn btn-primary" (click)="makeAdmin()">Make Admin</button>
+        <span> | </span>
+        <button type="button" class="btn btn-primary" (click)="removeAdmin()">Remove Admin</button>
+        <br>
+        <br>
+        <br>
+
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">
+              <div class="form-check">
+                <input class="form-check-input" [checked]="masterIsChecked" type="checkbox" value="" id="masterCheck" (click)="checkUncheckAll()" />
+              </div>
+            </th>
+            <th scope="col">ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Status</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr *ngFor="let user of users">
+            <th scope="row">
+              <div class="form-check">
+                <input class="form-check-input" [checked]="user.isChecked" type="checkbox" value="" id="{{user.userId}}" (click)="checkUncheckRow(user)" />
+              </div>
+            </th>
+            <td>{{user.userId}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+            <td>{{user.enabled ? 'active' : 'blocked'}}</td>
+          </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+</div>

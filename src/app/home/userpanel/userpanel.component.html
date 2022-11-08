@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-auto w-100">
+
+      <br><br><br>
+
+      <h1 class="display-4">User Panel</h1>
+
+      <br><br>
+
+      <h1 class="display-6">Manage collections: </h1>
+      <br><br>
+
+      <button type="button" class="btn btn-primary" (click)="onClickNewCollection()">Add new collection</button>
+      <br><br><br>
+
+
+      <h6 class="bg-light p-2 border-top border-bottom">Collection list:</h6>
+
+      <div *ngIf="collections.length === 0">
+        <mat-spinner></mat-spinner>
+      </div>
+
+      <ul class="list-group list-group-light">
+
+        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let collection of collections">
+          <div class="d-flex align-items-center">
+            <img [src]="collection.image" alt="" style="width: 45px; height: 45px"
+                 class="rounded-circle" />
+            <div class="ms-3">
+              <p class="fw-bold mb-1">Name: {{ collection.name }} </p>
+              <p class="text-muted mb-0">Description: {{ collection.description }}</p>
+            </div>
+          </div>
+          <div>
+            <a class="btn btn-link btn-rounded btn-sm" role="button" (click)="onClickShowCollection(collection)">View</a>
+            <a class="btn btn-link btn-rounded btn-sm" role="button" (click)="onClickEditCollection(collection)">Edit</a>
+            <a class="btn btn-link btn-rounded btn-sm" role="button" (click)="onClickRemoveCollection(collection.collectionId)" >Remove</a>
+          </div>
+        </li>
+
+      </ul>
+
+
+    </div>
+  </div>
+</div>

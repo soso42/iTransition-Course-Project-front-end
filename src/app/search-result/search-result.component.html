@@ -1,0 +1,40 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-auto w-100">
+      <br><br><br>
+      <h1 class="display-4">Search result:</h1>
+      <br><br>
+
+      <div class="row">
+
+        <div class="col-auto w-50">
+          <h1 class="display-6">Items found:</h1>
+          <br>
+          <div *ngIf="!items">
+            <mat-spinner></mat-spinner>
+          </div>
+          <div *ngFor="let item of items">
+            <a href="javascript:void(0)" (click)="onClickViewItem(item)">{{item.name}}</a>
+            <br>
+          </div>
+        </div>
+
+        <div class="col-auto w-50">
+          <h1 class="display-6">Collections found:</h1>
+          <br>
+          <div *ngIf="!collections">
+            <mat-spinner></mat-spinner>
+          </div>
+          <div *ngFor="let collection of collections">
+            <a href="javascript:void(0)" (click)="onClickViewCollection(collection)">{{collection.name}}</a>
+            <br>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

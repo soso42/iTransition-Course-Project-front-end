@@ -1,0 +1,163 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-auto w-100">
+
+      <!-- Item section-->
+      <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+
+          <div class="row gx-4 gx-lg-5 align-items-center" *ngIf="collection">
+            <div class="col-auto">
+              <h1 class="display-5 fw-bolder">{{item.name}}</h1>
+              <br>
+
+              <table class="table">
+                <tbody>
+                  <tr *ngIf="item.customString1">
+                    <td>{{collection.customString1}}:</td>
+                    <td>{{item.customString1}}</td>
+                  </tr>
+                  <tr *ngIf="item.customString2">
+                    <td>{{collection.customString2}}:</td>
+                    <td>{{item.customString2}}</td>
+                  </tr>
+                  <tr *ngIf="item.customString3">
+                    <td>{{collection.customString3}}:</td>
+                    <td>{{item.customString3}}</td>
+                  </tr>
+                  <tr *ngIf="item.customInteger1">
+                    <td>{{collection.customInteger1}}:</td>
+                    <td>{{item.customInteger1}}</td>
+                  </tr>
+                  <tr *ngIf="item.customInteger2">
+                    <td>{{collection.customInteger2}}:</td>
+                    <td>{{item.customInteger2}}</td>
+                  </tr>
+                  <tr *ngIf="item.customInteger3">
+                    <td>{{collection.customInteger3}}:</td>
+                    <td>{{item.customInteger3}}</td>
+                  </tr>
+                  <tr *ngIf="item.customBoolean1">
+                    <td>{{collection.customBoolean1}}:</td>
+                    <td>{{item.customBoolean1}}</td>
+                  </tr>
+                  <tr *ngIf="item.customBoolean2">
+                    <td>{{collection.customBoolean2}}:</td>
+                    <td>{{item.customBoolean2}}</td>
+                  </tr>
+                  <tr *ngIf="item.customBoolean3">
+                    <td>{{collection.customBoolean3}}:</td>
+                    <td>{{item.customBoolean3}}</td>
+                  </tr>
+                  <tr *ngIf="item.customMultilineText1">
+                    <td>{{collection.customMultilineText1}}:</td>
+                    <td>{{item.customMultilineText1}}</td>
+                  </tr>
+                  <tr *ngIf="item.customMultilineText2">
+                    <td>{{collection.customMultilineText2}}:</td>
+                    <td>{{item.customMultilineText2}}</td>
+                  </tr>
+                  <tr *ngIf="item.customMultilineText3">
+                    <td>{{collection.customMultilineText3}}:</td>
+                    <td>{{item.customMultilineText3}}</td>
+                  </tr>
+                  <tr *ngIf="item.customDate1">
+                    <td>{{collection.customDate1}}:</td>
+                    <td>{{item.customDate1}}</td>
+                  </tr>
+                  <tr *ngIf="item.customDate2">
+                    <td>{{collection.customDate2}}:</td>
+                    <td>{{item.customDate2}}</td>
+                  </tr>
+                  <tr *ngIf="item.customDate3">
+                    <td>{{collection.customDate3}}:</td>
+                    <td>{{item.customDate3}}</td>
+                  </tr>
+                  <tr *ngIf="item.tags">
+                    <td>Tags:</td>
+                    <td>
+<!--                      {{tagList}}-->
+                      <a style="margin-right: 10px" *ngFor="let tag of tagList" href="" routerLink="/search/term={{tag}}">{{tag}}</a><span> </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Author:</td>
+                    <td>{{item.owner.username}}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="d-flex">
+            <div class="text-primary">
+              <div *ngIf="auth.isUserLoggedIn()">
+                <a href="javascript:void(0)" (click)="onClickEditItem(item)" *ngIf="isEditable">Edit this item</a>
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <div class="d-flex">
+            <div class="text-primary">
+              <div *ngIf="auth.isUserLoggedIn()">
+                <span style="margin-right: 20px">Likes: {{numOfLikes}}      </span>
+                <a href="javascript:void(0)" *ngIf="!isLiked" (click)="likeItem()">Like</a>
+                <span *ngIf="isLiked"> You like this item... </span>
+                <a href="javascript:void(0)" *ngIf="isLiked" (click)="unlikeItem()" >Unlike</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- Comments section-->
+      <section style="background-color: #eee;">
+        <div class="container my-5 py-5">
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-12 col-lg-10 col-xl-8">
+
+              <p class="display-6" *ngIf="comments.length == 0">No comments yet</p>
+
+              <div class="card">
+
+                <div class="card-body" *ngFor="let comment of comments">
+                  <div class="d-flex flex-start align-items-center">
+                    <div>
+                      <h6 class="fw-bold text-primary mb-1">{{comment.author.username}}</h6>
+                      <p class="text-muted small mb-0">{{comment.dateTime}}</p>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-4 pb-2">{{comment.text}}</p>
+                </div>
+
+                <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;" *ngIf="userCanComment">
+                  <div class="d-flex flex-start w-100">
+                    <div class="form-outline w-100">
+                      <textarea class="form-control"
+                                id="textAreaExample"
+                                rows="4" style="background: #fff;" [(ngModel)]="newComment"></textarea>
+                    </div>
+                  </div>
+                  <div class="float-end mt-2 pt-1">
+                    <button type="button"
+                            class="btn btn-primary btn-sm"
+                            [disabled]="newComment.length === 0"
+                            (click)="onClickSaveComment()">Post comment</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

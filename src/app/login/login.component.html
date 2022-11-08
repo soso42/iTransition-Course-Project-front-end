@@ -1,0 +1,55 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row justify-content-center">
+
+    <div class="col-auto w-25">
+      <br><br><br>
+      <div class="alert alert-danger" role="alert" *ngIf="error !== ''">
+        {{ error }}
+      </div>
+      <!-- Pills content -->
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+          <form #loginForm="ngForm">
+
+            <p class="text-center">Login in:</p>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="text"
+                     id="username"
+                     class="form-control"
+                     ngModel
+                     name="username"
+                     required />
+              <label class="form-label" for="username">Username</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <input type="password"
+                     id="password"
+                     class="form-control"
+                     ngModel
+                     name="password"
+                     required />
+              <label class="form-label" for="password">Password</label>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4" (click)="authenticate(loginForm)" >Sign in</button>
+
+            <!-- Register buttons -->
+            <div class="text-center">
+              <p>Not a member? <a href="" routerLink="/signup">Sign up</a></p>
+            </div>
+
+          </form>
+        </div>
+
+     </div>
+
+    </div>
+  </div>
+</div>

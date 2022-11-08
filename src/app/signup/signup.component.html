@@ -1,0 +1,74 @@
+<app-header></app-header>
+
+<div class="container">
+  <br>
+  <br>
+  <br>
+
+  <div class="row justify-content-center">
+
+    <div class="col-auto w-25">
+
+      <!-- Pills content -->
+      <div class="tab-content">
+
+
+        <div class="tab-content" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+          <form #signUpForm="ngForm">
+
+            <p class="text-center">Sign up:</p>
+
+
+            <!-- Username input -->
+            <div class="form-outline mb-4">
+              <input type="text"
+                     id="username"
+                     class="form-control"
+                     ngModel
+                     name="username"
+                     required />
+              <label class="form-label" for="username">Username</label>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="email"
+                     id="registerEmail"
+                     class="form-control"
+                     ngModel
+                     name="email"
+                     required/>
+              <label class="form-label" for="registerEmail">Email</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <input type="password"
+                     id="registerPassword"
+                     class="form-control"
+                     ngModel
+                     name="password"
+                     required />
+              <label class="form-label" for="registerPassword">Password</label>
+            </div>
+
+
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-3" (click)="onClickSignUp(signUpForm)">Sign up</button>
+
+            <br><br>
+            <div class="text-center">
+              <p>Already have an account? <a href="" routerLink="/login">Log in</a></p>
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <!-- Pills content -->
+
+
+    </div>
+
+  </div>
+</div>

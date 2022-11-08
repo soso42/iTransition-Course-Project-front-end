@@ -1,0 +1,169 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-auto w-100">
+
+      <br><br>
+      <a class="btn btn-link btn-rounded btn-sm" role="button" (click)="location.back()">Back</a>
+      <br><br>
+            <p class="display-6">Create new collection:</p>
+      <br><br>
+
+      <form #collectionForm="ngForm">
+        <!-- Name input -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="name" class="form-control" [(ngModel)]="collection.name" name="name" />
+          <label class="form-label" for="name">Collection name</label>
+        </div>
+
+        <!-- Description input -->
+        <div class="w-100">
+          <p>Description: (supports markdown formatting)</p>
+          <textarea rows="10" class="form-control" [(ngModel)]="collection.description" name="markdown"></textarea>
+          <p>Preview of description</p>
+          <div class="form-control">
+            <showdown [value]="collection.description" [options]="{emoji: true}"></showdown>
+          </div>
+        </div>
+        <br><br>
+
+        <!-- Topic select -->
+        <div class="form-outline mb-4 w-25">
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="collection.topic" name="topic" id="topic">
+            <option value="Books">Books</option>
+            <option value="Drinks">Drinks</option>
+            <option value="Postmarks">Postmarks</option>
+            <option value="Guns">Guns</option>
+            <option value="Other">Other</option>
+          </select>
+          <label class="form-label" for="topic">Select topic</label>
+        </div>
+
+        <!-- Optional image upload -->
+        <div class="form-outline mb-4 w-25">
+
+          <div *ngIf="collection.image != null">
+            <img style="width: 150px; height: 150px" [src]="collection.image"  />
+            <a class="btn btn-link btn-rounded btn-sm" role="button" (click)="onClickDeleteImage()">Delete</a>
+            <br><br>
+          </div>
+          <p class="form-label" *ngIf="collection.image == null">The collection doesn't have an image</p>
+
+          <input type="file" id="image" class="form-control" (change)="onFileSelected($event)" accept="image/png, image/jpeg, image/webp" />
+          <label class="form-label" for="image">Optional image upload</label>
+        </div>
+
+        <br><br>
+
+
+        <!-- Optional String 1 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customString1" class="form-control" [(ngModel)]="collection.customString1" name="customString1" />
+          <label class="form-label" for="customString1">Optional String 1</label>
+        </div>
+
+        <!-- Optional String 2 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customString2" class="form-control" [(ngModel)]="collection.customString2" name="customString2" />
+          <label class="form-label" for="customString2">Optional String 2</label>
+        </div>
+
+        <!-- Optional String 3 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customString3" class="form-control" [(ngModel)]="collection.customString3" name="customString3" />
+          <label class="form-label" for="customString3">Optional String 3</label>
+        </div>
+        <br>
+
+
+        <!-- Optional Integer 1 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customInteger1" class="form-control" [(ngModel)]="collection.customInteger1" name="customInteger1" />
+          <label class="form-label" for="customInteger1">Optional Integer field 1</label>
+        </div>
+
+        <!-- Optional Integer 2 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customInteger2" class="form-control" [(ngModel)]="collection.customInteger2" name="customInteger2" />
+          <label class="form-label" for="customInteger2">Optional Integer field 2</label>
+        </div>
+
+        <!-- Optional Integer 3 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customInteger3" class="form-control" [(ngModel)]="collection.customInteger3" name="customInteger3" />
+          <label class="form-label" for="customInteger3">Optional Integer field 3</label>
+        </div>
+        <br>
+
+
+        <!-- Optional Boolean 1 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customBoolean1" class="form-control" [(ngModel)]="collection.customBoolean1" name="customBoolean1" />
+          <label class="form-label" for="customBoolean1">Optional boolean checkbox 1</label>
+        </div>
+
+        <!-- Optional Boolean 2 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customBoolean2" class="form-control" [(ngModel)]="collection.customBoolean2" name="customBoolean2" />
+          <label class="form-label" for="customBoolean2">Optional boolean checkbox 2</label>
+        </div>
+
+        <!-- Optional Boolean 3 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customBoolean3" class="form-control" [(ngModel)]="collection.customBoolean3" name="customBoolean3" />
+          <label class="form-label" for="customBoolean3">Optional boolean checkbox 3</label>
+        </div>
+        <br>
+
+
+        <!-- Optional Multiline text 1 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customMultilineText1" class="form-control" [(ngModel)]="collection.customMultilineText1" name="customMultilineText1" />
+          <label class="form-label" for="customMultilineText1">Optional multiline text 1</label>
+        </div>
+
+        <!-- Optional Multiline text 2 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customMultilineText2" class="form-control" [(ngModel)]="collection.customMultilineText2" name="customMultilineText2" />
+          <label class="form-label" for="customMultilineText2">Optional multiline text 2</label>
+        </div>
+
+        <!-- Optional Multiline text 3 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customMultilineText3" class="form-control" [(ngModel)]="collection.customMultilineText3" name="customMultilineText3" />
+          <label class="form-label" for="customMultilineText3">Optional multiline text 3</label>
+        </div>
+        <br>
+
+
+        <!-- Optional Date 1 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customDate1" class="form-control" [(ngModel)]="collection.customDate1" name="customDate1" />
+          <label class="form-label" for="customDate1">Optional date field 1</label>
+        </div>
+
+        <!-- Optional Date 2 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customDate2" class="form-control" [(ngModel)]="collection.customDate2" name="customDate2" />
+          <label class="form-label" for="customDate2">Optional date field 2</label>
+        </div>
+
+        <!-- Optional Date 3 -->
+        <div class="form-outline mb-4 w-25">
+          <input type="text" id="customDate3" class="form-control" [(ngModel)]="collection.customDate3" name="customDate3" />
+          <label class="form-label" for="customDate3">Optional date field 3</label>
+        </div>
+        <br>
+
+
+        <!-- Submit buttons -->
+                <button (click)="saveCollection()"
+                        type="submit"
+                        class="btn btn-primary btn-block mb-4" >Save collection</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>

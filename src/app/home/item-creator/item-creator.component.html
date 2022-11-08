@@ -1,0 +1,140 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-auto w-50">
+
+      <br><br>
+      <a class="btn btn-link btn-rounded btn-sm" role="button" (click)="location.back()">Back</a>
+      <br><br>
+      <p class="display-6">Create new item:</p>
+      <br><br>
+
+      <form>
+        <!-- Name input -->
+        <div class="form-outline mb-4">
+          <input type="text" id="name" class="form-control" [(ngModel)]="itemRequest.name" name="name" required />
+          <label class="form-label" for="name">Name</label>
+        </div>
+
+        <br><br>
+
+        <!-- Tags autocomplete -->
+        <app-tags (tagsUpdatedEvent)="updateTags($event)"></app-tags>
+        <br>
+
+
+        <!-- Optional String 1 -->
+        <div class="form-outline mb-4" *ngIf="collection.customString1 != null">
+          <input type="text" id="optionalString1" class="form-control" [(ngModel)]="itemRequest.customString1" name="customString1" />
+          <label class="form-label" for="optionalString1">{{collection.customString1}}</label>
+        </div>
+
+        <!-- Optional String 2 -->
+        <div class="form-outline mb-4" *ngIf="collection.customString2 != null">
+          <input type="text" id="optionalString2" class="form-control" [(ngModel)]="itemRequest.customString2" name="customString2" />
+          <label class="form-label" for="optionalString2">{{collection.customString2}}</label>
+        </div>
+
+        <!-- Optional String 3 -->
+        <div class="form-outline mb-4" *ngIf="collection.customString3 != null">
+          <input type="text" id="optionalString3" class="form-control" [(ngModel)]="itemRequest.customString3" name="customString3" />
+          <label class="form-label" for="optionalString3">{{collection.customString3}}</label>
+        </div>
+
+
+        <!-- Optional Integer 1 -->
+        <div class="form-outline mb-4" *ngIf="collection.customInteger1 != null">
+          <input type="number" id="customInteger1" class="form-control" [(ngModel)]="itemRequest.customInteger1" name="customInteger1" />
+          <label class="form-label" for="customInteger1">{{collection.customInteger1}}</label>
+        </div>
+
+        <!-- Optional Integer 2 -->
+        <div class="form-outline mb-4" *ngIf="collection.customInteger2 != null">
+          <input type="number" id="customInteger2" class="form-control" [(ngModel)]="itemRequest.customInteger2" name="customInteger2" />
+          <label class="form-label" for="customInteger2">{{collection.customInteger2}}</label>
+        </div>
+
+        <!-- Optional Integer 3 -->
+        <div class="form-outline mb-4" *ngIf="collection.customInteger3 != null">
+          <input type="number" id="customInteger3" class="form-control" [(ngModel)]="itemRequest.customInteger3" name="customInteger3" />
+          <label class="form-label" for="customInteger3">{{collection.customInteger3}}</label>
+        </div>
+
+
+        <!-- Optional Boolean 1 -->
+        <div class="form-outline mb-4"  *ngIf="collection.customBoolean1 != null">
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemRequest.customBoolean1" name="topic" >
+            <option value="true" selected>True</option>
+            <option value="false">False</option>
+          </select>
+          <label class="form-label">{{collection.customBoolean1}}</label>
+        </div>
+
+        <!-- Optional Boolean 2 -->
+        <div class="form-outline mb-4"  *ngIf="collection.customBoolean2 != null">
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemRequest.customBoolean2" name="topic" >
+            <option value="true" selected>True</option>
+            <option value="false">False</option>
+          </select>
+          <label class="form-label">{{collection.customBoolean2}}</label>
+        </div>
+
+        <!-- Optional Boolean 3 -->
+        <div class="form-outline mb-4"  *ngIf="collection.customBoolean3 != null">
+          <select class="form-select" aria-label="Default select example" [(ngModel)]="itemRequest.customBoolean3" name="topic" >
+            <option value="true" selected>True</option>
+            <option value="false">False</option>
+          </select>
+          <label class="form-label">{{collection.customBoolean3}}</label>
+        </div>
+
+
+        <!-- Optional MultilineText 1 -->
+        <div class="form-outline mb-4" *ngIf="collection.customMultilineText1 != null">
+          <textarea type="text" rows="3" id="customMultilineText1" class="form-control" [(ngModel)]="itemRequest.customMultilineText1" name="customMultilineText1"></textarea>
+          <label class="form-label" for="customMultilineText1">{{collection.customMultilineText1}}</label>
+        </div>
+
+        <!-- Optional MultilineText 2 -->
+        <div class="form-outline mb-4" *ngIf="collection.customMultilineText2 != null">
+          <textarea type="text" rows="3" id="customMultilineText2" class="form-control" [(ngModel)]="itemRequest.customMultilineText2" name="customMultilineText2"></textarea>
+          <label class="form-label" for="customMultilineText2">{{collection.customMultilineText2}}</label>
+        </div>
+
+        <!-- Optional MultilineText 3 -->
+        <div class="form-outline mb-4" *ngIf="collection.customMultilineText3 != null">
+          <textarea type="text" rows="3" id="customMultilineText3" class="form-control" [(ngModel)]="itemRequest.customMultilineText3" name="customMultilineText3"></textarea>
+          <label class="form-label" for="customMultilineText3">{{collection.customMultilineText3}}</label>
+        </div>
+
+
+        <!-- Optional Date 1 -->
+        <div class="form-outline mb-4" *ngIf="collection.customDate1 != null">
+          <input type="date" id="customDate1" class="form-control" [(ngModel)]="itemRequest.customDate1" name="customDate1" />
+          <label class="form-label" for="customDate1">{{collection.customDate1}}</label>
+        </div>
+
+        <!-- Optional Date 2 -->
+        <div class="form-outline mb-4" *ngIf="collection.customDate2 != null">
+          <input type="date" id="customDate2" class="form-control" [(ngModel)]="itemRequest.customDate2" name="customDate2" />
+          <label class="form-label" for="customDate2">{{collection.customDate2}}</label>
+        </div>
+
+        <!-- Optional Date 3 -->
+        <div class="form-outline mb-4" *ngIf="collection.customDate3 != null">
+          <input type="date" id="customDate3" class="form-control" [(ngModel)]="itemRequest.customDate3" name="customDate3" />
+          <label class="form-label" for="customDate3">{{collection.customDate3}}</label>
+        </div>
+
+
+        <!-- Submit buttons -->
+        <button (click)="saveItem()"
+                type="submit"
+                class="btn btn-primary btn-block mb-4" >Create item</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
